@@ -5073,7 +5073,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: topDown_baseTiles_236
+      name: water_waves_A
       rect:
         serializedVersion: 2
         x: 144
@@ -12977,7 +12977,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -12985,6 +12985,27 @@ TextureImporter:
       bones: []
       spriteID: 5e2e9abced65dfb4895616a3120f7f23
       internalID: 526298958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_waves_B
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 832
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dafc4308c453094d94227000de8d10c
+      internalID: 192505128
       vertices: []
       indices: 
       edges: []
@@ -13159,7 +13180,6 @@ TextureImporter:
       topDown_baseTiles_230: 1257231408
       topDown_baseTiles_231: -1308450676
       topDown_baseTiles_232: -1095987308
-      topDown_baseTiles_236: 268393186
       topDown_baseTiles_237: -1327387172
       topDown_baseTiles_238: -1564448174
       topDown_baseTiles_239: -2073582089
@@ -13613,6 +13633,8 @@ TextureImporter:
       vegetation_5: 1093845952
       vegetation_6: 38108223
       vegetation_7: 2012384895
+      water_waves_A: 268393186
+      water_waves_B: 192505128
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
