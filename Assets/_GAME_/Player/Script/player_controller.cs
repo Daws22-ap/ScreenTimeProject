@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,7 +8,7 @@ using UnityEngine.Rendering;
 public class player_controller : MonoBehaviour
 {
     #region
-    private enum Direcrtion { UP, DOWN, RIGHT, LEFT};
+    private enum Direction { UP, DOWN, RIGHT, LEFT};
     #endregion
 
     #region Editor Data
@@ -22,13 +23,25 @@ public class player_controller : MonoBehaviour
 
     #region Internal Data
     private Vector2  _moveDir = Vector2.zero;
-    private Direcrtion _facingDirection = Direcrtion.DOWN;
+    private Direction _facingDirection = Direction.DOWN;
+
+    private readonly int _animMoveRight = Animator.StringToHash("Anim_Player_Moves_Right");
+    private readonly int _animIdleRight = Animator.StringToHash("Anim_Player_Idles_Right");
+    private readonly int _animMoveLeft = Animator.StringToHash("Anim_Player_Moves_Left");
+    private readonly int _animIdleLeft = Animator.StringToHash("Anim_Player_Idles_Left");
+    private readonly int _animMoveUp = Animator.StringToHash("Anim_Player_Moves_Up");
+    private readonly int _animIdleUp = Animator.StringToHash("Anim_Player_Idles_Up");
+    private readonly int _animMoveDown = Animator.StringToHash("Anim_Player_Moves_Down");
+    private readonly int _animIdleDown = Animator.StringToHash("Anim_Player_Idles_Down");
+
     #endregion
 
     #region tick
     private void Update()
     {
         gatherInput();
+        calculateFacingDirection();
+        updateAnimation();
     }
 
     private void FixedUpdate()
@@ -53,6 +66,54 @@ public class player_controller : MonoBehaviour
     #endregion
 
     #region  Animation Logic
+    private void calculateFacingDirection()
+    {
+        if(_moveDir.x != 0)
+        {
+            if(_moveDir.x > 0) //Moving Right
+            {
+                _facingDirection = Direction.RIGHT;
+            }
+            else if (_moveDir.x < 0) //Moving Left
+            {
+                _facingDirection = Direction.LEFT;
+            }
+        }else if (_moveDir.y != 0)
+        {
+            if (_moveDir.y > 0) //Moving Up
+            {
+                _facingDirection = Direction.UP;
+            }
+            else if (_moveDir.y < 0) //Moving Down
+            {
+                _facingDirection = Direction.DOWN;
+            }
+        }
+    }
 
+    private void updateAnimation()
+    {
+        var isMoving = _moveDir.sqrMagnitude > 0;
+        var _targetAnim = _animMoveDown;
+
+        switch (_facingDirection)
+        {
+            case Direction.UP:
+                _targetAnim = isMoving ? _animMoveUp : _animIdleUp;
+                break;
+            case Direction.DOWN:
+                _targetAnim = isMoving ? _animMoveDown : _animIdleDown;
+                break;
+            case Direction.LEFT:
+                _targetAnim = isMoving ? _animMoveLeft : _animIdleLeft;
+                break;
+            case Direction.RIGHT:
+            default:
+                _targetAnim = isMoving ? _animMoveRight : _animIdleRight;
+                break;
+        }
+
+            _animator.CrossFade(_targetAnim, 0);
+    }
     #endregion
 }
