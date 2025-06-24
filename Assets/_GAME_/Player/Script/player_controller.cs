@@ -6,6 +6,9 @@ using UnityEngine.Rendering;
 [SelectionBase]
 public class player_controller : MonoBehaviour
 {
+    #region
+    private enum Direcrtion { UP, DOWN, RIGHT, LEFT};
+    #endregion
 
     #region Editor Data
     [Header("Movement attributes")]
@@ -13,10 +16,13 @@ public class player_controller : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] Animator _animator;
+    [SerializeField] SpriteRenderer _spriteRenderer;
     #endregion
 
     #region Internal Data
     private Vector2  _moveDir = Vector2.zero;
+    private Direcrtion _facingDirection = Direcrtion.DOWN;
     #endregion
 
     #region tick
@@ -36,16 +42,17 @@ public class player_controller : MonoBehaviour
     {
         _moveDir.x = Input.GetAxisRaw("Horizontal");
         _moveDir.y = Input.GetAxisRaw("Vertical");
-
-        print(_moveDir);
     }
     #endregion
 
     #region Movement Logic
     private void movementUpdate()
     {
-        _rb.velocity = _moveDir * _moveSpeed * Time.fixedDeltaTime; 
+        _rb.velocity = _moveDir.normalized * _moveSpeed * Time.fixedDeltaTime; 
     }
     #endregion
 
+    #region  Animation Logic
+
+    #endregion
 }
