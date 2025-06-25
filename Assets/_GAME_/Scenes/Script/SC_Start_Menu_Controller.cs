@@ -7,7 +7,7 @@ public class SC_Start_Menu_Controller : MonoBehaviour
 {
    public void onStartClick()
     {
-        SceneManager.LoadScene("0");
+        SceneManager.LoadScene(0);
     }
 
     public void onExitClick()
