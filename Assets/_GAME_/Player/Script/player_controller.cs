@@ -113,7 +113,7 @@ public class player_controller : MonoBehaviour
                 break;
         }
 
-            _animator.CrossFade(_targetAnim, 0);
+        _animator.CrossFade(_targetAnim, 0);
     }
     #endregion
 }
