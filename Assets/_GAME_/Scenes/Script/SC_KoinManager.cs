@@ -16,6 +16,7 @@ public class SC_KoinManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            sudahReset = false;
             DontDestroyOnLoad(gameObject);
 
             if (!sudahReset)
