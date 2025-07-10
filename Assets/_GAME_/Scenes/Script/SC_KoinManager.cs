@@ -5,11 +5,21 @@ using UnityEngine;
 public class SC_KoinManager : MonoBehaviour
 {
     public static SC_KoinManager Instance;
+    public GameObject koinDisplayPrefab; // Prefab untuk ditambahkan ke scene
 
     private const string KEY_KOIN = "JumlahKoin";
 
     private int _koin;
     private static bool sudahReset = false;
+
+    private  void start()
+    {
+        //Jika objek dengan SC_KoinDisplayUI belum ada, instansiasi prefabnya
+        if (FindObjectOfType<SC_KoinDIsplayUI>() == null)
+        {
+            Instantiate(koinDisplayPrefab);  // Menambahkan prefab ke scene
+        }
+    }
 
     private void Awake()
     {

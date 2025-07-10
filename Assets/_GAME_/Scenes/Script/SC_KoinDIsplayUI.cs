@@ -2,13 +2,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class SC_KoinDIsplayUI : MonoBehaviour
 {
     public TextMeshProUGUI teksKoin;
-    public string[] sceneTersembunyi = { "Math_quiz" }; 
-
+    public string[] sceneTersembunyi = { "Math_quiz" };
+    
+    
     private void Start()
     {
+
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
         UpdateKoin();
